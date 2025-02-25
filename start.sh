@@ -129,7 +129,7 @@ fi
 if_success $Text3 $Text4 $ReturnStatus
 
 # 重命名clash配置文件
-\cp -a $Temp_Dir/clash.yaml $Temp_Dir/clash_config.yaml
+cp -a $Temp_Dir/clash.yaml $Temp_Dir/clash_config.yaml
 
 
 ## 判断订阅内容是否符合clash配置文件标准，尝试转换（当前不支持对 x86_64 以外的CPU架构服务器进行clash配置文件检测和转换，此功能将在后续添加）
@@ -151,7 +151,7 @@ sed -e '/^port:/d'\
     -e '/^allow-lan"/d'\
     -e '/^mode:/d'\
     -e '/^log-level:/d'\
-    -e '/^external-controller:/d'
+    -e '/^external-controller:/d' \
     -e '/^secret:/d' > $Temp_Dir/proxy.txt
 
 # 合并形成新的config.yaml
@@ -196,7 +196,7 @@ echo ''
 # 添加环境变量(root权限)
 cat>/etc/profile.d/clash.sh<<EOF
 # 开启系统代理
-proxy_on() {
+open_proxy() {
 	export http_proxy=http://127.0.0.1:7890
 	export https_proxy=http://127.0.0.1:7890
 	export no_proxy=127.0.0.1,localhost
@@ -207,7 +207,7 @@ proxy_on() {
 }
 
 # 关闭系统代理
-proxy_off(){
+close_proxy(){
 	unset http_proxy
 	unset https_proxy
 	unset no_proxy
@@ -235,8 +235,8 @@ echo -e "             ﾚ'ヽL__|___i,___,ンﾚ|ノ"
 echo -e "                  ﾄ-,/  |___./"
 echo -e "                  'ｰ'    !_,.:"
 echo -e "本项目完全免费，若你是收费买的，恭喜您，您被骗了！"
-echo -e "项目地址：https://github.com/Elegycloud/clash-for-linux-backup"
+echo -e "项目地址：https://github.com/fadinglight9291117/clash-for-linux-backup"
 echo -e "项目随时会寄，且行且珍惜！"
 echo -e "请执行以下命令加载环境变量: source /etc/profile.d/clash.sh\n"
-echo -e "请执行以下命令开启系统代理: proxy_on\n"
-echo -e "若要临时关闭系统代理，请执行: proxy_off\n"
+echo -e "请执行以下命令开启系统代理: open_proxy\n"
+echo -e "若要临时关闭系统代理，请执行: close_proxy\n"
