@@ -1,0 +1,15 @@
+[Unit]
+Description=clash_for_linux Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=exec
+DynamicUser=yes
+Restart=on-failure
+RestartSec=5s
+ExecStart=/home/clz/.local/clash-for-linux/auto_start.sh
+ExecReload=/home/clz/.local/clash-for-linux/auto_start.sh
+
+[Install]
+WantedBy=multi-user.target

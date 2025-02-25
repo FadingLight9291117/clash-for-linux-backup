@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # 获取脚本工作目录绝对路径
 export Server_Dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
