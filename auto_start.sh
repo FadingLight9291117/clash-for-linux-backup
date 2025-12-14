@@ -7,7 +7,7 @@ export Server_Dir=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 source $Server_Dir/scripts/prompt_functions.sh
 
 # 加载.env变量文件
-source $Server_Dir/.env
+# source $Server_Dir/.env
 
 # 变量设置
 Conf_Dir="$Server_Dir/conf"
