@@ -1,15 +1,17 @@
 [Unit]
-Description=clash_for_linux Service
-After=network.target
-Wants=network.target
+Description=Clash for Linux - A rule-based proxy
+Documentation=https://github.com/fadinglight9291117/clash-for-linux-backup
+After=network-online.target
+Wants=network-online.target
 
 [Service]
-Type=exec
-DynamicUser=yes
+Type=simple
 Restart=on-failure
 RestartSec=5s
-ExecStart=/home/clz/.local/clash-for-linux/auto_start.sh
-ExecReload=/home/clz/.local/clash-for-linux/auto_start.sh
+ExecStart=CLASH_BINARY -d CONF_DIR
+ExecReload=/bin/kill -HUP $MAINPID
+StandardOutput=append:LOG_DIR/clash.log
+StandardError=append:LOG_DIR/clash.log
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
